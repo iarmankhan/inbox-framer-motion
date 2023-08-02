@@ -9,7 +9,7 @@ interface HeaderProps {
 
 export function Header(props: HeaderProps) {
   return (
-    <div className="py-2 px-4 flex items-center justify-between">
+    <div className="py-2 px-4 flex items-center justify-between border-b">
       <motion.div
         onClick={props.handleReset}
         className="cursor-pointer hover:bg-gray-100 p-1 rounded-md transition-all"

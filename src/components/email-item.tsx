@@ -18,11 +18,9 @@ export function EmailItem(props: EmailItemProps) {
     <motion.div
       layout
       initial={{
-        height: 0,
         opacity: 0,
       }}
       animate={{
-        height: "auto",
         opacity: 1,
         transition: {
           type: "spring",
@@ -34,7 +32,6 @@ export function EmailItem(props: EmailItemProps) {
       }}
       exit={{
         opacity: 0,
-        height: 0,
       }}
       transition={{
         duration: t(0.15),

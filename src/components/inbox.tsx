@@ -2,10 +2,10 @@ import { EmailItem } from "./email-item";
 import { Header } from "./header";
 import { EmailItemType, data } from "../helpers/data";
 import { useState, useCallback } from "react";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 export function Inbox() {
-  const [emails, setEmails] = useState<EmailItemType[]>(data);
+  const [emails, setEmails] = useState<EmailItemType[]>(data.slice(-1));
 
   const handleReset = useCallback(() => {
     setEmails(data);
@@ -35,7 +35,7 @@ export function Inbox() {
   return (
     <div className="border rounded-md">
       <Header handleArchive={handleArchive} handleReset={handleReset} />
-      <div className="flex flex-col max-h-[500px] px-2 overflow-auto">
+      <div className="flex flex-col max-h-[500px] py-2 px-2 overflow-auto">
         <AnimatePresence mode="popLayout" initial={false}>
           {emails.length ? (
             emails.map((email) => {
@@ -48,7 +48,19 @@ export function Inbox() {
               );
             })
           ) : (
-            <p>No E-mails yet!</p>
+            <motion.div
+              initial={{
+                height: 0,
+                opacity: 0,
+              }}
+              animate={{
+                height: "200px",
+                opacity: 1,
+              }}
+              className="flex items-center justify-center"
+            >
+              <p>No E-mails yet!</p>
+            </motion.div>
           )}
         </AnimatePresence>
       </div>
